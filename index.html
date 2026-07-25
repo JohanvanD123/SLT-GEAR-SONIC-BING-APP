@@ -16,20 +16,9 @@
     --bg-light: #0a0a18;
   }
   body {
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #050505 0%, #0a0a12 50%, #050510 100%);
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow: hidden;
-  }
-  .phone {
-    width: 100%;
-    max-width: 430px;
-    height: 100vh;
-    background: linear-gradient(135deg, #050505 0%, #0a0a12 50%, #050510 100%);
-    position: relative;
     overflow: hidden;
   }
 
@@ -110,53 +99,6 @@
     50% { opacity: 0.5; transform: scale(0.8); }
   }
 
-  /* 3D speaker styles */
-  .speaker-3d-wrap {
-    perspective: 1200px;
-    padding: 18px;
-    box-sizing: border-box;
-  }
-  .speaker-3d {
-    width: 100%;
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform 400ms ease;
-    margin: 0 auto;
-    max-height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: spinY 8s linear infinite;
-  }
-  .speaker-3d img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 14px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(0,240,255,0.03) inset;
-    transform: translateZ(30px) rotateY(0deg);
-  }
-  @keyframes spinY {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
-  }
-
-  .speaker-controls {
-    display:flex;
-    gap:8px;
-    justify-content:center;
-    margin-top:10px;
-  }
-  .speaker-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.06);
-    color: var(--cyan);
-    padding: 8px 12px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-
   .stats-panel {
     background: var(--glass);
     border: 1px solid var(--glass-border);
@@ -191,212 +133,776 @@
     letter-spacing: 1px;
   }
 
-  /* rest of original CSS unchanged (truncated in this commit for brevity) */
-  /* ... keep the rest of styles from the original file ... */
+  .section-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 20px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    width: 4px; height: 16px;
+    background: var(--cyan);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--cyan-glow);
+  }
+
+  .source-selector {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .source-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .source-tab {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: #888;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .source-tab.active {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan-glow);
+  }
+  .source-tab svg { width: 14px; height: 14px; }
+
+  .file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+  }
+  .file-input-wrapper input[type=file] {
+    position: absolute;
+    left: 0; top: 0;
+    opacity: 0;
+    width: 100%; height: 100%;
+    cursor: pointer;
+  }
+  .file-input-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px dashed rgba(0,240,255,0.3);
+    background: rgba(0,240,255,0.03);
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .file-input-btn:hover {
+    background: rgba(0,240,255,0.08);
+    border-color: var(--cyan);
+  }
+  .file-name {
+    color: #888;
+    font-size: 11px;
+    margin-top: 8px;
+    text-align: center;
+    font-family: monospace;
+  }
+
+  .eq-container {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .eq-presets {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .eq-presets::-webkit-scrollbar { display: none; }
+  .preset-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .preset-btn.active {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan-glow);
+  }
+  .eq-sliders {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    height: 140px;
+  }
+  .eq-band {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .eq-slider-track {
+    flex: 1;
+    width: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+  .eq-slider-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, var(--cyan), #0088ff);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--cyan-glow);
+    transition: height 0.2s;
+  }
+  .eq-slider-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+    cursor: grab;
+  }
+  .eq-label {
+    color: #666;
+    font-size: 9px;
+    font-family: monospace;
+  }
+
+  .playlist {
+    margin-bottom: 16px;
+  }
+  .track-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .track-item:hover, .track-item.active {
+    background: var(--glass);
+    border-color: var(--glass-border);
+  }
+  .track-item.active {
+    border-color: rgba(0,240,255,0.3);
+  }
+  .track-num {
+    width: 28px;
+    text-align: center;
+    color: #555;
+    font-family: monospace;
+    font-size: 12px;
+  }
+  .track-item.active .track-num { color: var(--cyan); }
+  .track-info { flex: 1; }
+  .track-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .track-artist {
+    color: #666;
+    font-size: 11px;
+  }
+  .track-duration {
+    color: #555;
+    font-family: monospace;
+    font-size: 11px;
+  }
+  .track-wave {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 16px;
+  }
+  .wave-bar {
+    width: 2px;
+    background: var(--cyan);
+    border-radius: 1px;
+    animation: wave 1s ease-in-out infinite;
+  }
+  .wave-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+  .wave-bar:nth-child(2) { height: 12px; animation-delay: 0.1s; }
+  .wave-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+  .wave-bar:nth-child(4) { height: 14px; animation-delay: 0.15s; }
+  @keyframes wave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.5); }
+  }
+
+  .now-playing {
+    position: fixed;
+    bottom: 84px;
+    left: 0; right: 0;
+    background: linear-gradient(to top, rgba(5,5,16,0.98), rgba(10,10,24,0.95));
+    border-top: 1px solid rgba(0,240,255,0.15);
+    padding: 16px 20px;
+    z-index: 60;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    position: relative;
+    cursor: pointer;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--cyan), #0088ff);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--cyan-glow);
+    position: relative;
+    transition: width 0.1s linear;
+  }
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  .np-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .np-track {
+    flex: 1;
+  }
+  .np-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .np-artist {
+    color: #888;
+    font-size: 11px;
+  }
+  .np-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .np-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .np-btn:hover { opacity: 1; }
+  .np-btn.play {
+    width: 44px; height: 44px;
+    background: var(--cyan-dim);
+    border: 1.5px solid var(--cyan);
+    border-radius: 50%;
+    opacity: 1;
+    box-shadow: 0 0 16px var(--cyan-glow);
+  }
+  .np-btn.play svg { fill: var(--cyan); }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 84px;
+    background: linear-gradient(to top, rgba(5,5,16,1), rgba(5,5,16,0.95));
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 12px;
+    z-index: 70;
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all 0.3s;
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .nav-item:hover { opacity: 0.7; }
+  .nav-item.active {
+    opacity: 1;
+    color: var(--cyan);
+  }
+  .nav-item.active svg { stroke: var(--cyan); filter: drop-shadow(0 0 6px var(--cyan-glow)); }
+  .nav-item.active .nav-label { color: var(--cyan); }
+  .nav-icon { width: 22px; height: 22px; }
+  .nav-icon svg { width: 100%; height: 100%; stroke: #fff; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-label {
+    font-family: monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .volume-slider {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+  .volume-fill {
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, var(--cyan), #0088ff);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--cyan-glow);
+  }
+
+  .viz-container {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 16px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .viz-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .viz-label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 9px;
+    color: #555;
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+
+  .mic-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(0,240,255,0.05);
+    border: 1px solid rgba(0,240,255,0.15);
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+  .mic-status svg { width: 16px; height: 16px; stroke: var(--cyan); fill: none; }
+  .mic-status span { color: #888; font-size: 11px; }
+  .mic-status.active { border-color: var(--cyan); background: var(--cyan-dim); }
+  .mic-status.active span { color: var(--cyan); }
+
+  .toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: monospace;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    z-index: 200;
+    box-shadow: 0 0 20px var(--cyan-glow);
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .empty-playlist {
+    text-align: center;
+    padding: 40px 20px;
+    color: #555;
+    font-size: 13px;
+  }
+  .empty-playlist svg {
+    width: 48px;
+    height: 48px;
+    stroke: #333;
+    margin-bottom: 12px;
+  }
 </style>
 <base target="_blank">
 </head>
 <body>
 
-<div class="phone">
-  <div class="toast" id="toast"></div>
+<div class="toast" id="toast"></div>
 
-  <div class="header">
-    <h1>SONIC BIN</h1>
-    <div class="status">CONNECTED &bull; BT 5.3</div>
-  </div>
+<div class="header">
+  <h1>SONIC BIN</h1>
+  <div class="status">CONNECTED &bull; BT 5.3</div>
+</div>
 
-  <div class="scroll-area" id="scrollArea">
-    <!-- HOME SCREEN -->
-    <div class="screen active" id="screen-home">
-      <div class="img-card">
-        <!-- Replaced two static pictures with a 3D-spinning speaker. -->
-        <div class="speaker-3d-wrap">
-          <div class="speaker-3d" id="speaker3d" tabindex="0" title="3D Sonic Bin Speaker">
-            <!-- Place your speaker image at assets/speaker_trash.jpg or update the src below -->
-            <img src="assets/speaker_trash.jpg" alt="Sonic Bin Speaker" id="speakerImg">
-          </div>
-          <div class="speaker-controls">
-            <button class="speaker-btn" id="toggleSpinBtn">Pause Spin</button>
-            <button class="speaker-btn" id="flipBtn">Flip 180&deg;</button>
-          </div>
-        </div>
-        <div class="overlay"></div>
-        <div class="badge"><div class="badge-dot"></div>ACTIVE</div>
+<div class="scroll-area" id="scrollArea">
+  <!-- HOME SCREEN -->
+  <div class="screen active" id="screen-home">
+    <div class="img-card">
+      <img src="1000437894.jpg" alt="Sonic Bin Front">
+      <div class="overlay"></div>
+      <div class="badge"><div class="badge-dot"></div>ACTIVE</div>
+    </div>
+
+    <div class="img-card">
+      <img src="1000437896.jpg" alt="Sonic Bin Back" style="height: 200px; object-fit: cover;">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="section-title">Audio Source</div>
+    <div class="source-selector">
+      <div class="source-tabs">
+        <button class="source-tab active" onclick="setSource('file')" id="tab-file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          LOAD FILE
+        </button>
+        <button class="source-tab" onclick="setSource('mic')" id="tab-mic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          PHONE MIC
+        </button>
       </div>
 
-      <!-- removed the second image card (rear) -->
-
-      <div class="section-title">Audio Source</div>
-      <div class="source-selector">
-        <div class="source-tabs">
-          <button class="source-tab active" onclick="setSource('file')" id="tab-file">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            LOAD FILE
-          </button>
-          <button class="source-tab" onclick="setSource('mic')" id="tab-mic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-            PHONE MIC
-          </button>
-        </div>
-
-        <div id="file-section">
-          <div class="file-input-wrapper">
-            <input type="file" id="audioFile" accept="audio/*" multiple onchange="loadAudioFile(event)">
-            <div class="file-input-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="17 8 12 3 7 8"/>
-                <line x1="12" y1="3" x2="12" y2="15"/>
-              </svg>
-              Tap to load audio files
-            </div>
-          </div>
-          <div class="file-name" id="fileName">No file selected</div>
-        </div>
-
-        <div id="mic-section" style="display:none;">
-          <button class="file-input-btn" onclick="toggleMic()" id="micBtn">
+      <div id="file-section">
+        <div class="file-input-wrapper">
+          <input type="file" id="audioFile" accept="audio/*" multiple onchange="loadAudioFile(event)">
+          <div class="file-input-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="23"/>
-              <line x1="8" y1="23" x2="16" y2="23"/>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
-            <span id="micBtnText">Enable Phone Microphone</span>
-          </button>
-          <div class="mic-status" id="micStatus">
-            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/></svg>
-            <span id="micStatusText">Microphone inactive</span>
+            Tap to load audio files
           </div>
         </div>
+        <div class="file-name" id="fileName">No file selected</div>
       </div>
 
-      <div class="section-title">Live Output</div>
-      <div class="viz-container">
-        <span class="viz-label">FREQUENCY SPECTRUM</span>
-        <canvas id="vizCanvas"></canvas>
-      </div>
-
-      <div class="stats-panel">
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.5">
-              <rect x="2" y="6" width="20" height="12" rx="2"/>
-              <rect x="4" y="8" width="16" height="8" rx="1" fill="rgba(0,240,255,0.3)"/>
-              <rect x="22" y="10" width="2" height="4" rx="1" fill="#00f0ff"/>
-            </svg>
-          </div>
-          <div>
-            <div class="stat-value">84%</div>
-            <div class="stat-label">Battery</div>
-          </div>
+      <div id="mic-section" style="display:none;">
+        <button class="file-input-btn" onclick="toggleMic()" id="micBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          <span id="micBtnText">Enable Phone Microphone</span>
+        </button>
+        <div class="mic-status" id="micStatus">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <span id="micStatusText">Microphone inactive</span>
         </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.5">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/>
-              <path d="M12 6v6l4 2" stroke-linecap="round"/>
-              <circle cx="12" cy="12" r="1" fill="#00f0ff"/>
-            </svg>
-          </div>
-          <div>
-            <div class="stat-value">-42dBm</div>
-            <div class="stat-label">Signal</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-title">Output Level</div>
-      <div class="volume-control">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-        </svg>
-        <div class="volume-slider" id="volumeSlider"><div class="volume-fill" id="volumeFill" style="width:65%"></div></div>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>
-        </svg>
       </div>
     </div>
 
-    <!-- rest of file unchanged... -->
+    <div class="section-title">Live Output</div>
+    <div class="viz-container">
+      <span class="viz-label">FREQUENCY SPECTRUM</span>
+      <canvas id="vizCanvas"></canvas>
+    </div>
+
+    <div class="stats-panel">
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.5">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <rect x="4" y="8" width="16" height="8" rx="1" fill="rgba(0,240,255,0.3)"/>
+            <rect x="22" y="10" width="2" height="4" rx="1" fill="#00f0ff"/>
+          </svg>
+        </div>
+        <div>
+          <div class="stat-value">84%</div>
+          <div class="stat-label">Battery</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.5">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/>
+            <path d="M12 6v6l4 2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="1" fill="#00f0ff"/>
+          </svg>
+        </div>
+        <div>
+          <div class="stat-value">-42dBm</div>
+          <div class="stat-label">Signal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Output Level</div>
+    <div class="volume-control">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+      <div class="volume-slider" id="volumeSlider"><div class="volume-fill" id="volumeFill" style="width:65%"></div></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      </svg>
+    </div>
   </div>
 
-  <!-- Now Playing Bar -->
-  <div class="now-playing">
-    <div class="progress-bar" id="progressBar" onclick="seekAudio(event)"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="np-controls">
-      <div class="np-track">
-        <div class="np-title" id="npTitle">No Track Loaded</div>
-        <div class="np-artist" id="npArtist">Load a file or enable mic</div>
-      </div>
-      <div class="np-buttons">
-        <button class="np-btn" onclick="prevTrack()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
-          </svg>
-        </button>
-        <button class="np-btn play" onclick="togglePlay()" id="playBtn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </button>
-        <button class="np-btn" onclick="nextTrack()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-          </svg>
-        </button>
+  <!-- PLAYLIST SCREEN -->
+  <div class="screen" id="screen-playlist">
+    <div class="section-title">Playlist</div>
+    <div class="playlist" id="playlistContainer">
+      <div class="empty-playlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <div>No tracks loaded</div>
+        <div style="font-size:11px;margin-top:4px;">Go to Home and load audio files</div>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Navigation -->
-  <div class="bottom-nav">
-    <div class="nav-item active" onclick="switchScreen('home', this)">
-      <div class="nav-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
+  <!-- EQ SCREEN -->
+  <div class="screen" id="screen-eq">
+    <div class="section-title">Equalizer</div>
+    <div class="eq-container">
+      <div class="eq-presets">
+        <button class="preset-btn active" onclick="setPreset('flat')">FLAT</button>
+        <button class="preset-btn" onclick="setPreset('bass')">BASS BOOST</button>
+        <button class="preset-btn" onclick="setPreset('treble')">TREBLE</button>
+        <button class="preset-btn" onclick="setPreset('vocal')">VOCAL</button>
+        <button class="preset-btn" onclick="setPreset('loudness')">LOUDNESS</button>
       </div>
-      <span class="nav-label">HOME</span>
-    </div>
-    <div class="nav-item" onclick="switchScreen('playlist', this)">
-      <div class="nav-icon">
-        <svg viewBox="0 0 24 24">
-          <line x1="8" y1="6" x2="21" y2="6"/>
-          <line x1="8" y1="12" x2="21" y2="12"/>
-          <line x1="8" y1="18" x2="21" y2="18"/>
-          <line x1="3" y1="6" x2="3.01" y2="6"/>
-          <line x1="3" y1="12" x2="3.01" y2="12"/>
-          <line x1="3" y1="18" x2="3.01" y2="18"/>
-        </svg>
+      <div class="eq-sliders" id="eqSliders">
+        <div class="eq-band" data-freq="60">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 0)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">60Hz</span>
+        </div>
+        <div class="eq-band" data-freq="170">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 1)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">170Hz</span>
+        </div>
+        <div class="eq-band" data-freq="310">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 2)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">310Hz</span>
+        </div>
+        <div class="eq-band" data-freq="600">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 3)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">600Hz</span>
+        </div>
+        <div class="eq-band" data-freq="1000">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 4)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">1kHz</span>
+        </div>
+        <div class="eq-band" data-freq="3000">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 5)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">3kHz</span>
+        </div>
+        <div class="eq-band" data-freq="6000">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 6)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">6kHz</span>
+        </div>
+        <div class="eq-band" data-freq="12000">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 7)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">12kHz</span>
+        </div>
+        <div class="eq-band" data-freq="14000">
+          <div class="eq-slider-track" onclick="adjustEQ(event, 8)">
+            <div class="eq-slider-fill" style="height: 50%;"><div class="eq-slider-thumb" style="bottom: calc(100% - 8px);"></div></div>
+          </div>
+          <span class="eq-label">14kHz</span>
+        </div>
       </div>
-      <span class="nav-label">LIST</span>
     </div>
-    <div class="nav-item" onclick="switchScreen('eq', this)">
-      <div class="nav-icon">
-        <svg viewBox="0 0 24 24">
-          <line x1="4" y1="21" x2="4" y2="14"/>
-          <line x1="8" y1="21" x2="8" y2="9"/>
-          <line x1="12" y1="21" x2="12" y2="7"/>
-          <line x1="16" y1="21" x2="16" y2="11"/>
-          <line x1="20" y1="21" x2="20" y2="5"/>
-        </svg>
+  </div>
+
+  <!-- SETTINGS SCREEN -->
+  <div class="screen" id="screen-settings">
+    <div class="section-title">Device Settings</div>
+    <div class="eq-container">
+      <div class="track-item" style="margin-bottom: 8px;">
+        <div class="track-info">
+          <div class="track-title">Auto Power-Off</div>
+          <div class="track-artist">After 15 min of inactivity</div>
+        </div>
+        <div class="track-duration" style="color: var(--cyan);">ON</div>
       </div>
-      <span class="nav-label">EQ</span>
-    </div>
-    <div class="nav-item" onclick="switchScreen('settings', this)">
-      <div class="nav-icon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09"/>
-        </svg>
+      <div class="track-item" style="margin-bottom: 8px;">
+        <div class="track-info">
+          <div class="track-title">LED Indicator</div>
+          <div class="track-artist">Rear panel status light</div>
+        </div>
+        <div class="track-duration" style="color: var(--cyan);">ON</div>
       </div>
-      <span class="nav-label">SET</span>
+      <div class="track-item" style="margin-bottom: 8px;">
+        <div class="track-info">
+          <div class="track-title">Stereo Pairing</div>
+          <div class="track-artist">Connect two Sonic Bins</div>
+        </div>
+        <div class="track-duration">OFF</div>
+      </div>
+      <div class="track-item" style="margin-bottom: 8px;">
+        <div class="track-info">
+          <div class="track-title">Firmware</div>
+          <div class="track-artist">Current version installed</div>
+        </div>
+        <div class="track-duration" style="font-family: monospace;">v2.4.1</div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Now Playing Bar -->
+<div class="now-playing">
+  <div class="progress-bar" id="progressBar" onclick="seekAudio(event)"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="np-controls">
+    <div class="np-track">
+      <div class="np-title" id="npTitle">No Track Loaded</div>
+      <div class="np-artist" id="npArtist">Load a file or enable mic</div>
+    </div>
+    <div class="np-buttons">
+      <button class="np-btn" onclick="prevTrack()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+        </svg>
+      </button>
+      <button class="np-btn play" onclick="togglePlay()" id="playBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+      <button class="np-btn" onclick="nextTrack()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="switchScreen('home', this)">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <span class="nav-label">HOME</span>
+  </div>
+  <div class="nav-item" onclick="switchScreen('playlist', this)">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+    </div>
+    <span class="nav-label">LIST</span>
+  </div>
+  <div class="nav-item" onclick="switchScreen('eq', this)">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24">
+        <line x1="4" y1="21" x2="4" y2="14"/>
+        <line x1="8" y1="21" x2="8" y2="9"/>
+        <line x1="12" y1="21" x2="12" y2="7"/>
+        <line x1="16" y1="21" x2="16" y2="11"/>
+        <line x1="20" y1="21" x2="20" y2="5"/>
+      </svg>
+    </div>
+    <span class="nav-label">EQ</span>
+  </div>
+  <div class="nav-item" onclick="switchScreen('settings', this)">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </div>
+    <span class="nav-label">SET</span>
   </div>
 </div>
 
@@ -417,39 +923,383 @@ let animationId = null;
 let trackList = [];
 let currentTrackIndex = 0;
 
-// (original JS continues unchanged) - truncated here to keep the file readable in the repo
+const eqPresets = {
+  flat:    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  bass:    [8, 6, 3, 1, 0, 0, 1, 2, 1],
+  treble:  [0, 0, 1, 2, 3, 5, 6, 7, 5],
+  vocal:   [0, 0, 0, 4, 6, 4, 2, 1, 0],
+  loudness:[5, 4, 3, 2, 1, 2, 4, 6, 5]
+};
+const eqFreqs = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000];
 
-// Small scripts for controlling the 3D speaker
-(function(){
-  const speaker = document.getElementById('speaker3d');
-  const img = document.getElementById('speakerImg');
-  const toggleBtn = document.getElementById('toggleSpinBtn');
-  const flipBtn = document.getElementById('flipBtn');
-  let spinning = true;
-  let flipped = false;
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  // If the image does not exist at the path, try to fall back to existing images in repo
-  fetch(img.src, { method: 'HEAD' }).catch(()=>{
-    // fallback to bundled images if assets file isn't present
-    img.src = '1000437894.jpg';
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = 0.8;
+
+    gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0.65;
+
+    eqFilters = eqFreqs.map(freq => {
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'peaking';
+      filter.frequency.value = freq;
+      filter.Q.value = 1.4;
+      filter.gain.value = 0;
+      return filter;
+    });
+
+    for (let i = 0; i < eqFilters.length - 1; i++) {
+      eqFilters[i].connect(eqFilters[i + 1]);
+    }
+    eqFilters[eqFilters.length - 1].connect(analyser);
+    analyser.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    startVisualizer();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+// ===== FILE SOURCE =====
+function loadAudioFile(event) {
+  initAudio();
+  const files = event.target.files;
+  if (!files.length) return;
+
+  trackList = Array.from(files).map(f => ({
+    file: f,
+    title: f.name.replace(/\.[^/.]+$/, ""),
+    artist: 'Local File',
+    duration: '--:--',
+    url: URL.createObjectURL(f)
+  }));
+
+  currentTrackIndex = 0;
+  loadTrack(0);
+  updatePlaylistUI();
+  showToast('Loaded ' + files.length + ' track(s)');
+  document.getElementById('fileName').textContent = files[0].name;
+}
+
+function loadTrack(index) {
+  if (!trackList[index]) return;
+
+  if (audioElement) {
+    audioElement.pause();
+    audioElement.src = '';
+  }
+
+  audioElement = new Audio(trackList[index].url);
+  audioElement.crossOrigin = 'anonymous';
+
+  audioElement.addEventListener('ended', () => nextTrack());
+  audioElement.addEventListener('timeupdate', updateProgress);
+  audioElement.addEventListener('loadedmetadata', () => {
+    const min = Math.floor(audioElement.duration / 60);
+    const sec = Math.floor(audioElement.duration % 60);
+    trackList[index].duration = min + ':' + (sec < 10 ? '0' : '') + sec;
+    updatePlaylistUI();
   });
 
-  toggleBtn.addEventListener('click', ()=>{
-    spinning = !spinning;
-    speaker.style.animationPlayState = spinning ? 'running' : 'paused';
-    toggleBtn.textContent = spinning ? 'Pause Spin' : 'Resume Spin';
+  if (sourceNode) sourceNode.disconnect();
+  sourceNode = audioCtx.createMediaElementSource(audioElement);
+  sourceNode.connect(eqFilters[0]);
+
+  currentTrackIndex = index;
+  updateNPInfo(trackList[index].title, trackList[index].artist);
+  audioElement.play();
+  isPlaying = true;
+  updatePlayButton();
+}
+
+// ===== MICROPHONE SOURCE =====
+async function toggleMic() {
+  initAudio();
+
+  if (isMicActive) {
+    if (micStream) micStream.getTracks().forEach(t => t.stop());
+    if (micSource) micSource.disconnect();
+    isMicActive = false;
+    document.getElementById('micBtnText').textContent = 'Enable Phone Microphone';
+    document.getElementById('micStatus').classList.remove('active');
+    document.getElementById('micStatusText').textContent = 'Microphone inactive';
+    showToast('Microphone disabled');
+    return;
+  }
+
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: {
+      echoCancellation: false,
+      noiseSuppression: false,
+      autoGainControl: false
+    }});
+
+    if (audioElement) {
+      audioElement.pause();
+      isPlaying = false;
+      updatePlayButton();
+    }
+
+    micSource = audioCtx.createMediaStreamSource(micStream);
+    micSource.connect(eqFilters[0]);
+
+    isMicActive = true;
+    document.getElementById('micBtnText').textContent = 'Disable Microphone';
+    document.getElementById('micStatus').classList.add('active');
+    document.getElementById('micStatusText').textContent = 'Microphone active - routing to speaker';
+    showToast('Microphone active!');
+    updateNPInfo('Live Input', 'Phone Microphone');
+  } catch (err) {
+    showToast('Mic access denied: ' + err.message);
+  }
+}
+
+// ===== SOURCE SWITCHING =====
+function setSource(type) {
+  currentSource = type;
+  document.querySelectorAll('.source-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + type).classList.add('active');
+
+  if (type === 'file') {
+    document.getElementById('file-section').style.display = 'block';
+    document.getElementById('mic-section').style.display = 'none';
+    if (isMicActive) toggleMic();
+  } else {
+    document.getElementById('file-section').style.display = 'none';
+    document.getElementById('mic-section').style.display = 'block';
+    if (audioElement) {
+      audioElement.pause();
+      isPlaying = false;
+      updatePlayButton();
+    }
+  }
+}
+
+// ===== PLAYBACK CONTROLS =====
+function togglePlay() {
+  if (currentSource === 'mic') {
+    showToast('Switch to File mode to use playback controls');
+    return;
+  }
+  if (!audioElement) {
+    showToast('Load an audio file first');
+    return;
+  }
+  initAudio();
+  if (isPlaying) {
+    audioElement.pause();
+    isPlaying = false;
+  } else {
+    audioElement.play();
+    isPlaying = true;
+  }
+  updatePlayButton();
+}
+
+function updatePlayButton() {
+  const btn = document.getElementById('playBtn');
+  if (isPlaying) {
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+    document.querySelectorAll('.wave-bar').forEach(b => b.style.animationPlayState = 'running');
+  } else {
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    document.querySelectorAll('.wave-bar').forEach(b => b.style.animationPlayState = 'paused');
+  }
+}
+
+function prevTrack() {
+  if (!trackList.length) return;
+  currentTrackIndex = (currentTrackIndex - 1 + trackList.length) % trackList.length;
+  loadTrack(currentTrackIndex);
+}
+
+function nextTrack() {
+  if (!trackList.length) return;
+  currentTrackIndex = (currentTrackIndex + 1) % trackList.length;
+  loadTrack(currentTrackIndex);
+}
+
+function updateProgress() {
+  if (!audioElement) return;
+  const pct = (audioElement.currentTime / audioElement.duration) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function seekAudio(e) {
+  if (!audioElement || !audioElement.duration) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audioElement.currentTime = pct * audioElement.duration;
+}
+
+function updateNPInfo(title, artist) {
+  document.getElementById('npTitle').textContent = title;
+  document.getElementById('npArtist').textContent = artist;
+}
+
+// ===== PLAYLIST UI =====
+function updatePlaylistUI() {
+  const container = document.getElementById('playlistContainer');
+
+  if (trackList.length === 0) {
+    container.innerHTML = `
+      <div class="empty-playlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <div>No tracks loaded</div>
+        <div style="font-size:11px;margin-top:4px;">Go to Home and load audio files</div>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = '';
+  trackList.forEach((track, i) => {
+    const isActive = i === currentTrackIndex;
+    const item = document.createElement('div');
+    item.className = 'track-item' + (isActive ? ' active' : '');
+    item.onclick = () => loadTrack(i);
+    item.innerHTML = `
+      <div class="track-num">${isActive ? '<div class="track-wave"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>' : String(i + 1).padStart(2, '0')}</div>
+      <div class="track-info">
+        <div class="track-title">${track.title}</div>
+        <div class="track-artist">${track.artist}</div>
+      </div>
+      <div class="track-duration">${track.duration}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// ===== EQUALIZER =====
+function setPreset(name) {
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const gains = eqPresets[name];
+  const bands = document.querySelectorAll('.eq-band');
+
+  gains.forEach((gain, i) => {
+    if (eqFilters[i]) {
+      const now = audioCtx.currentTime;
+      eqFilters[i].gain.setTargetAtTime(gain, now, 0.1);
+    }
+    const fill = bands[i].querySelector('.eq-slider-fill');
+    const height = 50 + (gain * 3);
+    fill.style.height = Math.max(10, Math.min(90, height)) + '%';
   });
 
-  flipBtn.addEventListener('click', ()=>{
-    flipped = !flipped;
-    speaker.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
-  });
+  showToast('EQ: ' + name.toUpperCase());
+}
 
-  // Pause spin while pointer is over it for better readability
-  speaker.addEventListener('mouseenter', ()=> speaker.style.animationPlayState = 'paused');
-  speaker.addEventListener('mouseleave', ()=> speaker.style.animationPlayState = spinning ? 'running' : 'paused');
+function adjustEQ(e, index) {
+  initAudio();
+  const track = e.currentTarget;
+  const rect = track.getBoundingClientRect();
+  const pct = 1 - ((e.clientY - rect.top) / rect.height);
+  const gain = (pct - 0.5) * 24;
 
-})();
+  if (eqFilters[index]) {
+    eqFilters[index].gain.setTargetAtTime(gain, audioCtx.currentTime, 0.05);
+  }
+
+  const fill = track.querySelector('.eq-slider-fill');
+  const height = Math.max(10, Math.min(90, pct * 100));
+  fill.style.height = height + '%';
+
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+}
+
+// ===== VISUALIZER =====
+function startVisualizer() {
+  const canvas = document.getElementById('vizCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const bufferLength = analyser ? analyser.frequencyBinCount : 128;
+  const dataArray = new Uint8Array(bufferLength);
+
+  function draw() {
+    animationId = requestAnimationFrame(draw);
+
+    if (!analyser) return;
+    analyser.getByteFrequencyData(dataArray);
+
+    ctx.fillStyle = 'rgba(5, 5, 16, 0.3)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barCount = 32;
+    const barWidth = canvas.width / barCount;
+    const step = Math.floor(bufferLength / barCount);
+
+    for (let i = 0; i < barCount; i++) {
+      let sum = 0;
+      for (let j = 0; j < step; j++) {
+        sum += dataArray[i * step + j];
+      }
+      const avg = sum / step;
+      const barHeight = (avg / 255) * canvas.height * 0.9;
+
+      const x = i * barWidth;
+      const y = canvas.height - barHeight;
+
+      const hue = 180 + (i / barCount) * 60;
+      ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${avg / 255 * 0.9})`;
+      ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
+
+      ctx.fillStyle = `hsla(${hue}, 100%, 80%, 0.8)`;
+      ctx.fillRect(x + 1, y, barWidth - 2, 2);
+    }
+  }
+  draw();
+}
+
+// ===== VOLUME =====
+document.getElementById('volumeSlider').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  document.getElementById('volumeFill').style.width = (pct * 100) + '%';
+  if (gainNode) {
+    gainNode.gain.setTargetAtTime(pct, audioCtx.currentTime, 0.05);
+  }
+});
+
+// ===== SCREEN NAVIGATION =====
+function switchScreen(screen, el) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + screen).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// ===== INIT =====
+window.addEventListener('load', () => {
+  document.body.addEventListener('click', () => {
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }, { once: true });
+});
 </script>
+
 </body>
 </html>
