@@ -61,6 +61,7 @@
   }
   .img-card img {
     width: 100%;
+    height: auto;
     display: block;
     object-fit: cover;
   }
@@ -615,7 +616,7 @@
     </div>
 
     <div class="img-card">
-      <img src="1000437896.jpg" alt="Sonic Bin Back" style="height: 200px; object-fit: cover;">
+      <img src="1000437896.jpg" alt="Sonic Bin Back">
       <div class="overlay"></div>
     </div>
 
@@ -623,11 +624,20 @@
     <div class="source-selector">
       <div class="source-tabs">
         <button class="source-tab active" onclick="setSource('file')" id="tab-file">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
           LOAD FILE
         </button>
         <button class="source-tab" onclick="setSource('mic')" id="tab-mic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
           PHONE MIC
         </button>
       </div>
@@ -658,7 +668,12 @@
           <span id="micBtnText">Enable Phone Microphone</span>
         </button>
         <div class="mic-status" id="micStatus">
-          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <svg viewBox="0 0 24 24" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
           <span id="micStatusText">Microphone inactive</span>
         </div>
       </div>
@@ -899,7 +914,7 @@
     <div class="nav-icon">
       <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="3"/>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.5a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
       </svg>
     </div>
     <span class="nav-label">SET</span>
@@ -998,308 +1013,221 @@ function loadTrack(index) {
   audioElement = new Audio(trackList[index].url);
   audioElement.crossOrigin = 'anonymous';
 
-  audioElement.addEventListener('ended', () => nextTrack());
-  audioElement.addEventListener('timeupdate', updateProgress);
-  audioElement.addEventListener('loadedmetadata', () => {
-    const min = Math.floor(audioElement.duration / 60);
-    const sec = Math.floor(audioElement.duration % 60);
-    trackList[index].duration = min + ':' + (sec < 10 ? '0' : '') + sec;
-    updatePlaylistUI();
-  });
-
-  if (sourceNode) sourceNode.disconnect();
-  sourceNode = audioCtx.createMediaElementSource(audioElement);
+  sourceNode = audioCtx.createMediaElementAudioSource(audioElement);
   sourceNode.connect(eqFilters[0]);
 
+  audioElement.addEventListener('ended', nextTrack);
+  audioElement.addEventListener('timeupdate', updateProgress);
   currentTrackIndex = index;
-  updateNPInfo(trackList[index].title, trackList[index].artist);
-  audioElement.play();
-  isPlaying = true;
-  updatePlayButton();
+  updatePlaylistUI();
+  updateNowPlaying();
 }
 
-// ===== MICROPHONE SOURCE =====
-async function toggleMic() {
-  initAudio();
-
-  if (isMicActive) {
-    if (micStream) micStream.getTracks().forEach(t => t.stop());
-    if (micSource) micSource.disconnect();
-    isMicActive = false;
-    document.getElementById('micBtnText').textContent = 'Enable Phone Microphone';
-    document.getElementById('micStatus').classList.remove('active');
-    document.getElementById('micStatusText').textContent = 'Microphone inactive';
-    showToast('Microphone disabled');
-    return;
-  }
-
-  try {
-    micStream = await navigator.mediaDevices.getUserMedia({ audio: {
-      echoCancellation: false,
-      noiseSuppression: false,
-      autoGainControl: false
-    }});
-
-    if (audioElement) {
-      audioElement.pause();
-      isPlaying = false;
-      updatePlayButton();
-    }
-
-    micSource = audioCtx.createMediaStreamSource(micStream);
-    micSource.connect(eqFilters[0]);
-
-    isMicActive = true;
-    document.getElementById('micBtnText').textContent = 'Disable Microphone';
-    document.getElementById('micStatus').classList.add('active');
-    document.getElementById('micStatusText').textContent = 'Microphone active - routing to speaker';
-    showToast('Microphone active!');
-    updateNPInfo('Live Input', 'Phone Microphone');
-  } catch (err) {
-    showToast('Mic access denied: ' + err.message);
+function updateNowPlaying() {
+  if (trackList[currentTrackIndex]) {
+    document.getElementById('npTitle').textContent = trackList[currentTrackIndex].title;
+    document.getElementById('npArtist').textContent = trackList[currentTrackIndex].artist;
   }
 }
 
-// ===== SOURCE SWITCHING =====
-function setSource(type) {
-  currentSource = type;
-  document.querySelectorAll('.source-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + type).classList.add('active');
-
-  if (type === 'file') {
-    document.getElementById('file-section').style.display = 'block';
-    document.getElementById('mic-section').style.display = 'none';
-    if (isMicActive) toggleMic();
-  } else {
-    document.getElementById('file-section').style.display = 'none';
-    document.getElementById('mic-section').style.display = 'block';
-    if (audioElement) {
-      audioElement.pause();
-      isPlaying = false;
-      updatePlayButton();
-    }
-  }
-}
-
-// ===== PLAYBACK CONTROLS =====
-function togglePlay() {
-  if (currentSource === 'mic') {
-    showToast('Switch to File mode to use playback controls');
-    return;
-  }
-  if (!audioElement) {
-    showToast('Load an audio file first');
-    return;
-  }
-  initAudio();
-  if (isPlaying) {
-    audioElement.pause();
-    isPlaying = false;
-  } else {
-    audioElement.play();
-    isPlaying = true;
-  }
-  updatePlayButton();
-}
-
-function updatePlayButton() {
-  const btn = document.getElementById('playBtn');
-  if (isPlaying) {
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-    document.querySelectorAll('.wave-bar').forEach(b => b.style.animationPlayState = 'running');
-  } else {
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-    document.querySelectorAll('.wave-bar').forEach(b => b.style.animationPlayState = 'paused');
-  }
-}
-
-function prevTrack() {
-  if (!trackList.length) return;
-  currentTrackIndex = (currentTrackIndex - 1 + trackList.length) % trackList.length;
-  loadTrack(currentTrackIndex);
-}
-
-function nextTrack() {
-  if (!trackList.length) return;
-  currentTrackIndex = (currentTrackIndex + 1) % trackList.length;
-  loadTrack(currentTrackIndex);
-}
-
-function updateProgress() {
-  if (!audioElement) return;
-  const pct = (audioElement.currentTime / audioElement.duration) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-}
-
-function seekAudio(e) {
-  if (!audioElement || !audioElement.duration) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  audioElement.currentTime = pct * audioElement.duration;
-}
-
-function updateNPInfo(title, artist) {
-  document.getElementById('npTitle').textContent = title;
-  document.getElementById('npArtist').textContent = artist;
-}
-
-// ===== PLAYLIST UI =====
 function updatePlaylistUI() {
   const container = document.getElementById('playlistContainer');
-
-  if (trackList.length === 0) {
-    container.innerHTML = `
-      <div class="empty-playlist">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <div>No tracks loaded</div>
-        <div style="font-size:11px;margin-top:4px;">Go to Home and load audio files</div>
-      </div>`;
+  if (!trackList.length) {
+    container.innerHTML = '<div class="empty-playlist"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><div>No tracks loaded</div><div style="font-size:11px;margin-top:4px;">Go to Home and load audio files</div></div>';
     return;
   }
 
-  container.innerHTML = '';
-  trackList.forEach((track, i) => {
-    const isActive = i === currentTrackIndex;
-    const item = document.createElement('div');
-    item.className = 'track-item' + (isActive ? ' active' : '');
-    item.onclick = () => loadTrack(i);
-    item.innerHTML = `
-      <div class="track-num">${isActive ? '<div class="track-wave"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>' : String(i + 1).padStart(2, '0')}</div>
+  container.innerHTML = trackList.map((track, idx) => `
+    <div class="track-item ${idx === currentTrackIndex ? 'active' : ''}" onclick="loadTrack(${idx}); togglePlay();">
+      <div class="track-num">${idx + 1}</div>
       <div class="track-info">
         <div class="track-title">${track.title}</div>
         <div class="track-artist">${track.artist}</div>
       </div>
       <div class="track-duration">${track.duration}</div>
-    `;
-    container.appendChild(item);
-  });
+      ${isPlaying && idx === currentTrackIndex ? '<div class="track-wave"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>' : ''}
+    </div>
+  `).join('');
+}
+
+function togglePlay() {
+  initAudio();
+  if (!trackList.length && !isMicActive) return;
+  
+  if (isPlaying) {
+    if (audioElement) audioElement.pause();
+    if (micStream) micStream.getTracks().forEach(t => t.stop());
+    isPlaying = false;
+  } else {
+    if (currentSource === 'file' && audioElement) {
+      audioElement.play();
+      isPlaying = true;
+    } else if (currentSource === 'mic' && isMicActive) {
+      isPlaying = true;
+    }
+  }
+  
+  document.getElementById('playBtn').textContent = isPlaying ? '⏸' : '▶';
+  updatePlaylistUI();
+}
+
+function nextTrack() {
+  if (currentTrackIndex < trackList.length - 1) {
+    loadTrack(currentTrackIndex + 1);
+    if (isPlaying) audioElement.play();
+  }
+}
+
+function prevTrack() {
+  if (currentTrackIndex > 0) {
+    loadTrack(currentTrackIndex - 1);
+    if (isPlaying) audioElement.play();
+  }
+}
+
+function seekAudio(event) {
+  if (!audioElement) return;
+  const bar = event.currentTarget;
+  const percent = event.offsetX / bar.offsetWidth;
+  audioElement.currentTime = percent * audioElement.duration;
+}
+
+function updateProgress() {
+  if (!audioElement) return;
+  const percent = (audioElement.currentTime / audioElement.duration) * 100;
+  document.getElementById('progressFill').style.width = percent + '%';
+}
+
+// ===== MICROPHONE SOURCE =====
+function setSource(source) {
+  currentSource = source;
+  document.getElementById('file-section').style.display = source === 'file' ? 'block' : 'none';
+  document.getElementById('mic-section').style.display = source === 'mic' ? 'block' : 'none';
+  
+  document.getElementById('tab-file').classList.toggle('active', source === 'file');
+  document.getElementById('tab-mic').classList.toggle('active', source === 'mic');
+}
+
+function toggleMic() {
+  initAudio();
+  if (!isMicActive) {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        micStream = stream;
+        micSource = audioCtx.createMediaStreamAudioSource(stream);
+        micSource.connect(eqFilters[0]);
+        isMicActive = true;
+        
+        document.getElementById('micStatus').classList.add('active');
+        document.getElementById('micStatusText').textContent = 'Microphone active';
+        document.getElementById('micBtnText').textContent = 'Disable Microphone';
+        showToast('Microphone enabled');
+      })
+      .catch(e => {
+        showToast('Microphone access denied');
+        console.error(e);
+      });
+  } else {
+    if (micStream) {
+      micStream.getTracks().forEach(track => track.stop());
+    }
+    isMicActive = false;
+    
+    document.getElementById('micStatus').classList.remove('active');
+    document.getElementById('micStatusText').textContent = 'Microphone inactive';
+    document.getElementById('micBtnText').textContent = 'Enable Phone Microphone';
+    showToast('Microphone disabled');
+  }
 }
 
 // ===== EQUALIZER =====
-function setPreset(name) {
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-
-  const gains = eqPresets[name];
-  const bands = document.querySelectorAll('.eq-band');
-
-  gains.forEach((gain, i) => {
-    if (eqFilters[i]) {
-      const now = audioCtx.currentTime;
-      eqFilters[i].gain.setTargetAtTime(gain, now, 0.1);
-    }
-    const fill = bands[i].querySelector('.eq-slider-fill');
-    const height = 50 + (gain * 3);
-    fill.style.height = Math.max(10, Math.min(90, height)) + '%';
-  });
-
-  showToast('EQ: ' + name.toUpperCase());
+function adjustEQ(event, bandIndex) {
+  const track = event.currentTarget;
+  const rect = track.getBoundingClientRect();
+  const y = event.clientY - rect.top;
+  const height = rect.height;
+  const percent = Math.max(0, Math.min(1, (height - y) / height));
+  
+  const fill = track.querySelector('.eq-slider-fill');
+  const thumb = track.querySelector('.eq-slider-thumb');
+  
+  fill.style.height = (percent * 100) + '%';
+  thumb.style.bottom = 'calc(' + (percent * 100) + '% - 8px)';
+  
+  const gain = (percent - 0.5) * 24;
+  eqFilters[bandIndex].gain.value = gain;
 }
 
-function adjustEQ(e, index) {
-  initAudio();
-  const track = e.currentTarget;
-  const rect = track.getBoundingClientRect();
-  const pct = 1 - ((e.clientY - rect.top) / rect.height);
-  const gain = (pct - 0.5) * 24;
-
-  if (eqFilters[index]) {
-    eqFilters[index].gain.setTargetAtTime(gain, audioCtx.currentTime, 0.05);
-  }
-
-  const fill = track.querySelector('.eq-slider-fill');
-  const height = Math.max(10, Math.min(90, pct * 100));
-  fill.style.height = height + '%';
-
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+function setPreset(preset) {
+  const gains = eqPresets[preset];
+  gains.forEach((gain, idx) => {
+    const percent = (gain / 12) + 0.5;
+    const band = document.querySelectorAll('.eq-band')[idx];
+    const fill = band.querySelector('.eq-slider-fill');
+    const thumb = band.querySelector('.eq-slider-thumb');
+    
+    fill.style.height = (percent * 100) + '%';
+    thumb.style.bottom = 'calc(' + (percent * 100) + '% - 8px)';
+    eqFilters[idx].gain.value = gain;
+  });
+  
+  document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
 }
 
 // ===== VISUALIZER =====
 function startVisualizer() {
   const canvas = document.getElementById('vizCanvas');
   const ctx = canvas.getContext('2d');
-
-  function resize() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const bufferLength = analyser ? analyser.frequencyBinCount : 128;
-  const dataArray = new Uint8Array(bufferLength);
+  const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
   function draw() {
     animationId = requestAnimationFrame(draw);
 
-    if (!analyser) return;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
     analyser.getByteFrequencyData(dataArray);
 
-    ctx.fillStyle = 'rgba(5, 5, 16, 0.3)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const barWidth = canvas.width / dataArray.length;
+    let x = 0;
 
-    const barCount = 32;
-    const barWidth = canvas.width / barCount;
-    const step = Math.floor(bufferLength / barCount);
-
-    for (let i = 0; i < barCount; i++) {
-      let sum = 0;
-      for (let j = 0; j < step; j++) {
-        sum += dataArray[i * step + j];
-      }
-      const avg = sum / step;
-      const barHeight = (avg / 255) * canvas.height * 0.9;
-
-      const x = i * barWidth;
-      const y = canvas.height - barHeight;
-
-      const hue = 180 + (i / barCount) * 60;
-      ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${avg / 255 * 0.9})`;
-      ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
-
-      ctx.fillStyle = `hsla(${hue}, 100%, 80%, 0.8)`;
-      ctx.fillRect(x + 1, y, barWidth - 2, 2);
+    for (let i = 0; i < dataArray.length; i++) {
+      const barHeight = (dataArray[i] / 255) * canvas.height;
+      const hue = (i / dataArray.length) * 120;
+      ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+      x += barWidth;
     }
   }
+
   draw();
 }
 
-// ===== VOLUME =====
-document.getElementById('volumeSlider').addEventListener('click', function(e) {
-  const rect = this.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  document.getElementById('volumeFill').style.width = (pct * 100) + '%';
-  if (gainNode) {
-    gainNode.gain.setTargetAtTime(pct, audioCtx.currentTime, 0.05);
-  }
-});
-
-// ===== SCREEN NAVIGATION =====
-function switchScreen(screen, el) {
+// ===== UI CONTROLS =====
+function switchScreen(screenId, navItem) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + screen).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  el.classList.add('active');
+  document.getElementById('screen-' + screenId).classList.add('active');
+  
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  navItem.classList.add('active');
 }
 
-// ===== TOAST =====
-function showToast(msg) {
+function showToast(message) {
   const toast = document.getElementById('toast');
-  toast.textContent = msg;
+  toast.textContent = message;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
-// ===== INIT =====
-window.addEventListener('load', () => {
-  document.body.addEventListener('click', () => {
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  }, { once: true });
+document.getElementById('volumeSlider').addEventListener('click', (e) => {
+  const slider = e.currentTarget;
+  const percent = e.offsetX / slider.offsetWidth;
+  document.getElementById('volumeFill').style.width = (percent * 100) + '%';
+  if (gainNode) gainNode.gain.value = percent;
 });
-</script>
 
+initAudio();
+</script>
 </body>
 </html>
